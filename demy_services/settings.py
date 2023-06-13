@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'eservices',
+    
     'bootstrap5',
+    'rest_framework',
+    
+    'eservices',
+    'visa_processing',
 ]
 
 MIDDLEWARE = [
