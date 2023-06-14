@@ -45,6 +45,6 @@ class Basic_visa_processing(models.Model):
     adv_non_immigrant_visa_type = models.CharField(max_length=100, choices=Non_Immigrant_Visa_choices.choices, default=None)
 
     def __str__(self):
-        return self.services_name
+        return self.basic_visa_surname
 
     
