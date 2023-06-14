@@ -1,3 +1,5 @@
+import this
+
 from django.db import models
 from django.db.models import CASCADE, SET_NULL, DO_NOTHING
 
@@ -31,7 +33,7 @@ class Appointment(models.Model):
         verbose_name_plural = 'Passport Application Appointment'
 
     def __str__(self):
-        return self.appointment_type
+        return self.APPOINTMENT_TYPE[self.appointment_type.check()]
 
 
 class Applicant(models.Model):
