@@ -85,10 +85,12 @@ DATABASES = {
     #    'NAME': BASE_DIR / 'db.sqlite3',
     #}
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ecoscape_db',
         'USER': 'ecouser',
         'PASSWORD': 'ecouserPasswd',
+        'HOST': '45.34.73.66',
+        'PORT' : '5432',
     }
 }
 
