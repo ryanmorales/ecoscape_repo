@@ -125,7 +125,7 @@ class Passport(models.Model):
     issuing_auth = models.CharField(max_length=100, null=True, blank=True)
     application_type = models.IntegerField(choices=APPLICATION_TYPE, default=NEW)
     basis_of_citizenship = models.IntegerField(choices=CITIZEN_BASIS, default=OTHER)
-    has_foreign_passport = models.BooleanField(default=False)
+    foreign_passport_holder = models.BooleanField(default=False)
     emergency_contact_person = models.CharField(max_length=100, null=False, blank=False)
     emergency_contact_number = models.CharField(max_length=60, null=False, blank=False)
 

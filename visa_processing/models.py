@@ -28,7 +28,7 @@ class Basic_visa_processing(models.Model):
     basic_visa_passport_number = models.CharField(max_length=250)
     basic_visa_sex = models.CharField(max_length=10, choices=SEX_CHOICES, default=None)
     basic_visa_birthdate = models.DateField(max_length=10)
-    basic_visa_age = models.IntegerField(max_length=5)
+    basic_visa_age = models.IntegerField()
 
     STATUS_CHOICES = (
         ('New Application','NEW APPLICATION'),

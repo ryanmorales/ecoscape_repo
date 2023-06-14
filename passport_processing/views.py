@@ -10,8 +10,9 @@ class PassportProcessing(BaseViewSet):
 
     @staticmethod
     def new_passport(self, request):
-        pass
+        render(BaseViewSet.unauthorized_response())
 
     @staticmethod
     def renew_passport(self, request):
         pass
+
