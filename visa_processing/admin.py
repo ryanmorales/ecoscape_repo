@@ -17,7 +17,13 @@ class Visa_Processing_Admin_Form(forms.ModelForm):
 
 class Visa_Processing_Admin(admin.ModelAdmin):
     list_display =[
-        'visa_processing_id', 'applicant_surname', 'applicant_given_name', 'applicant_passport_number', 'visa_status', 'visa_type'
+        'visa_processing_id', 
+        'applicant_surname', 
+        'applicant_given_name', 
+        'applicant_passport_number', 
+        'visa_service_type', 
+        'visa_status', 
+        'visa_type',
     ]
     form = Visa_Processing_Admin_Form
 

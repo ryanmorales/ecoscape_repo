@@ -1,13 +1,19 @@
 from django.shortcuts import render
+from .models import Visa
+
 
 # Create your views here.
-def add_visa_processing(requests):
+def list(request):
+    list = Visa.objects.all()
+    return render(request, "visa_processing/visa_processing_list.html", {'visa_processing_list':list})
+
+def add(requests):
     pass
 
 
-def update_visa_processing(requests):
+def update(requests):
     pass
 
 
-def delete_visa_processing(requests):
+def delete(requests):
     pass

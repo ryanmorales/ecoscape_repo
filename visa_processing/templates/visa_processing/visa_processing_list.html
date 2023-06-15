@@ -1,0 +1,41 @@
+{% include "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="card-body">
+    <h4>Visa Processing List</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Surname</th>
+                <th scope="col">Given Name</th>
+                <th scope="col">Passport Number</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Birthdate</th>
+                <th scope="col">Age</th>
+                <th scope="col">Visa Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for visa in visa_processing_list %}
+            <tr>
+                <td>{{ visa.applicant_surname }}</td>
+                <td>{{ visa.applicant_given_name }}</td>
+                <td>{{ visa.applicant_passport_number }}</td>
+                <td>{{ visa.applicant_sex }}</td>
+                <td>{{ visa.applicant_birthdate }}</td>
+                <td>{{ visa.applicant_age }}</td>
+                <td>{{ visa.visa_status }}</td>
+
+                <td><a type="button" class="btn btn-warning" href="/visa_processing_update/{{ visa.visa_processing_id }}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/visa_processing_delete/{{ visa.visa_processing_id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="#">Create</a>
+</div>
+{% endblock %}

@@ -31,9 +31,16 @@ class Visa(models.Model):
     applicant_birthdate = models.DateField(max_length=10)
     applicant_age = models.IntegerField()
 
-    STATUS_CHOICES = (
+    SERVICE_TYPE_CHOICES = (
         ('New Application','NEW APPLICATION'),
         ('Renewal','RENEWAL'),
+    )
+    visa_service_type = models.CharField(max_length=25, choices=SERVICE_TYPE_CHOICES, default=None)
+
+    STATUS_CHOICES = (
+        ('Deferred','DEFERRED'),
+        ('In-Progress','IN PROGRESS'),
+        ('Completed','COMPLETED'),
     )
     visa_status = models.CharField(max_length=25, choices=STATUS_CHOICES, default=None)
     
@@ -46,11 +53,11 @@ class Visa(models.Model):
     non_immigrant_visa_type = models.CharField(max_length=100, choices=Non_Immigrant_Visa_choices.choices, default=None)
 
     class Meta:
-        verbose_name = 'Visa'
+        verbose_name = 'Visa Processing'
         verbose_name_plural = 'Visa Processing'
 
 
     def __str__(self):
-        return self.visa_surname
+        return self.applicant_surname
 
     
