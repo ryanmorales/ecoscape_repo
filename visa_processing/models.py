@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Non_Immigrant_Visa_choices(models.TextChoices):
+    none = "N/A"
     business_tourist_visa = "Business-Tourist Visa"
     work_visa = "Work Visa"
     student_visa = "Student Visa"
@@ -15,7 +16,7 @@ class Non_Immigrant_Visa_choices(models.TextChoices):
     niv_types_visa = "NIV Type Visa"
 
 
-class Basic_visa_processing(models.Model):
+class Visa(models.Model):
 
     SEX_CHOICES = (
         ('male','MALE'),
@@ -23,28 +24,33 @@ class Basic_visa_processing(models.Model):
     )
 
     visa_processing_id = models.AutoField(primary_key=True)
-    basic_visa_surname = models.CharField(max_length=250, db_index=True)
-    basic_visa_given_name = models.CharField(max_length=250)
-    basic_visa_passport_number = models.CharField(max_length=250)
-    basic_visa_sex = models.CharField(max_length=10, choices=SEX_CHOICES, default=None)
-    basic_visa_birthdate = models.DateField(max_length=10)
-    basic_visa_age = models.IntegerField()
+    applicant_surname = models.CharField(max_length=250, db_index=True)
+    applicant_given_name = models.CharField(max_length=250)
+    applicant_passport_number = models.CharField(max_length=250)
+    applicant_sex = models.CharField(max_length=10, choices=SEX_CHOICES, default=None)
+    applicant_birthdate = models.DateField(max_length=10)
+    applicant_age = models.IntegerField()
 
     STATUS_CHOICES = (
         ('New Application','NEW APPLICATION'),
         ('Renewal','RENEWAL'),
     )
-    adv_visa_status = models.CharField(max_length=25, choices=STATUS_CHOICES, default=None)
+    visa_status = models.CharField(max_length=25, choices=STATUS_CHOICES, default=None)
     
     TYPE_CHOICES = (
         ('Non Immigrant Visa','NON-IMMIGRANT VISA'),
         ('Immigrant','IMMIGRANT VISA'),
     )
-    adv_visa_type = models.CharField(max_length=25, choices=TYPE_CHOICES, default=None)
+    visa_type = models.CharField(max_length=25, choices=TYPE_CHOICES, default=None)
 
-    adv_non_immigrant_visa_type = models.CharField(max_length=100, choices=Non_Immigrant_Visa_choices.choices, default=None)
+    non_immigrant_visa_type = models.CharField(max_length=100, choices=Non_Immigrant_Visa_choices.choices, default=None)
+
+    class Meta:
+        verbose_name = 'Visa'
+        verbose_name_plural = 'Visa Processing'
+
 
     def __str__(self):
-        return self.basic_visa_surname
+        return self.visa_surname
 
     
