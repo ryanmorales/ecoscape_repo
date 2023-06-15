@@ -33,7 +33,8 @@ class Appointment(models.Model):
         verbose_name_plural = 'Passport Application Appointment'
 
     def __str__(self):
-        return self.APPOINTMENT_TYPE[self.appointment_type.check()]
+        for k, v in self.APPOINTMENT_TYPE:
+            return v if k == self.appointment_type else None
 
 
 class Applicant(models.Model):
