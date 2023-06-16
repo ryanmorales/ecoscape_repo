@@ -55,3 +55,6 @@ class Visa_Processing_Admin(admin.ModelAdmin):
         return fieldsets
 
 admin.site.register(Visa, Visa_Processing_Admin)
+admin.site.site_header = "EcoScape Travel and Tours Admin"
+admin.site.site_title = "Visa Processing Admin"
+admin.site.index_title = "Visa Processing Admin"
