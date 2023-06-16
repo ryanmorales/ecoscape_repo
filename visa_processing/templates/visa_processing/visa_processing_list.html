@@ -1,10 +1,13 @@
-{% include "base.html" %}
+{% extends "base.html" %}
 
 {% load static %}
 
 {% block content %}
+<div class="container mt-2 mb-2">
 <div class="card-body">
     <h4>Visa Processing List</h4>
+    <br/>
+    <a type="button" class="btn btn-success" href="#">Create</a>
     <table class="table">
         <thead>
             <tr>
@@ -36,6 +39,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <a type="button" class="btn btn-success" href="#">Create</a>
+    
+</div>
 </div>
 {% endblock %}
