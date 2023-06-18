@@ -1,0 +1,24 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">View transaction</h3>
+  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="">
+    Title: {{ visa_processing_list.client_surname }}
+  </div>
+  <div class="">
+    Author:
+  </div>
+  <div class="">
+    Price:
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+</div>
