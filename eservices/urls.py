@@ -7,6 +7,6 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('', views.eservices, name='eservices'),
-    path('visa_processing/', include('visa_processing.urls')),
+    path('visa-processing/', include('visa_processing.urls')),
 
 ]
