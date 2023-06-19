@@ -7,5 +7,6 @@ urlpatterns = [
     path('create/', views.VisaCreateView.as_view(), name='visa-processing-create'),
     path('update/<int:pk>', views.VisaUpdateView.as_view(), name='visa-processing-update'),
     path('view/<int:pk>', views.VisaReadView.as_view(), name='visa-processing-view'),
+    path('filter/', views.VisaFilterView.as_view(), name='visa-processing-filter'),
 
 ]

@@ -17,12 +17,23 @@
         id="create-transaction"
         type="button"
         data-popup-url="{%url 'visa-processing-create' %}" 
-        class="btn btn-success float-start"
+        class="btn btn-sm btn-success float-start"
         name="button"
         > 
         New</button>
+
+    <button type="button" class="btn btn-sm btn-success bs-modal float-end me-1" href="#">Reports</button>
+
+    <button 
+        id="filter-transaction" 
+        type="button" 
+        class="filter-transaction btn btn-sm btn-success float-end me-1" 
+        name="button" 
+        data-form-url="{% url 'visa-processing-filter' %}"
+        >
+        Filter</button>
+
     
-    <a type="button" class="btn btn-success float-end" href="#">Reports</a>
     <br>
     <hr>
     <table class="table">
@@ -56,7 +67,9 @@
                     <button type="button" class="update-transaction bs-modal btn btn-sm btn-warning" data-form-url="{% url 'visa-processing-update' visa.visa_processing_id %}">
                         Update
                     </button>
-                    <a type="button" class="btn btn-danger" href="/visa-processing-delete/{{ visa.visa_processing_id }}">Delete</a>
+                    <button type="button" class="delete-transaction bs-modal btn btn-sm btn-danger" data-form-url="">
+                        Delete
+                    </button>
                 </td>
             </tr>
             {% endfor %}
@@ -89,6 +102,12 @@
             isDeleteForm: false
             });
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        modalForm(document.getElementById('filter-transaction'), {
+        formURL: "{% url 'visa-processing-filter' %}",
+        })
     });
 
 </script>
