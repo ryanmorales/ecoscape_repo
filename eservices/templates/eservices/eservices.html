@@ -1,3 +1,24 @@
-{% extends "base.html" %}
+{% load static %}
 
-{% block title %} Portal {% endblock title %}
+    <nav class="navbar navbar-expand-lg bg-primary justify-content-center steady_nav">
+
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+
+                {% for service in services %}
+
+                    <li class="nav-item">
+                        <a class="btn btn-alert navbar-btn text-danger text-white" type="button"  href="{% url 'eservices' %}">
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                            {{ service.services_name }}
+                        </a>
+                    </li>
+
+                {% endfor %}
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            </ul>
+        </div>
+    </nav>
