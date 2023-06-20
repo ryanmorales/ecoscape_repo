@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('', views.eservices, name='eservices'),
+    path('service/<int:pk>', views.eservices_service, name='eservices-service'),
     path('visa-processing/', include('visa_processing.urls')),
 
 ]

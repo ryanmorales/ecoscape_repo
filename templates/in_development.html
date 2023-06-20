@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block service-links %}
+
+{% endblock %}
+
+{% block content %}
+<div class="error" style="text-align: center">
+    <h1>
+        {{ error_message }}
+    </h1>
+    <br>
+    <h4>
+        {{ extra_info }}
+    </h4>
+</div>
+{% endblock content %}

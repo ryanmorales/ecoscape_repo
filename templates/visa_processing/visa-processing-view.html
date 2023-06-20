@@ -1,0 +1,33 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">View transaction</h3>
+  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class=""><b>Client Surname:</b> {{ object.client_surname }}</div>
+  <div class=""><b>Client Given Name:</b> {{ object.client_given_name }}</div>
+  <div class=""><b>Client Contact #:</b> {{ object.client_contact_number }}</div>
+  <div class=""><b>Applicant Surname:</b> {{ object.applicant_surname }}</div>
+  <div class=""><b>Applicant Given Name:</b>> {{ object.applicant_given_name }}</div>
+  <div class=""><b>Visa Service Type:</b> {{ object.visa_service_type }}</div>
+  <div class=""><b>Status:</b> {{ object.status }}</div>
+  <div class=""><b>Country Visa:</b> {{ object.country_visa }}</div>
+  <div class=""><b>Visa Form:</b> {{ object.visa_form }}</div>
+  <div class=""><b>Appointment Date:</b> {{ object.appointment_date }}</div>
+  <div class=""><b>OR #:</b> {{ object.or_number }}</div>
+  <div class=""><b>OR Receipt:</b> {{ object.or_receipt }}</div>
+  <div class=""><b>Service Fee:</b> {{ object.service_fee }}</div>
+  <div class=""><b>Visa Fee:</b> {{ object.visa_fee }}</div>
+  <div class=""><b>Created By:</b> {{ object.created_by }}</div>
+  <div class=""><b>Date Created:</b> {{ object.date_created }}</div>
+  <div class=""><b>Updated By:</b> {{ object.updated_by }}</div>
+  <div class=""><b>Date Updated:</b> {{ object.date_updated }}</div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+</div>
