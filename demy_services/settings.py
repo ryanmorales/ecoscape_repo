@@ -36,7 +36,11 @@ INSTALLED_APPS = [
 
     'bootstrap5',
     'rest_framework',
-
+    'phonenumber_field',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'bootstrap_modal_forms',
+    'widget_tweaks',
     'eservices',
     'visa_processing',
     'passport_processing',
@@ -65,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #Custom
+                'eservices.context_processors.eservices_context',
             ],
         },
     },
@@ -134,7 +140,12 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
