@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block service-links %}
+    <div>
+        <li class="breadcrumb-item "><a href="{% url 'eservices' %}">Home</a></li>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h5 align="center">Welcome!!! View all Passport Processing. </h5>
+    <hr>
+    <ul type="1">
+        {% for object in objects %}
+        <li>
+            <a href="/passport_detail/{{object.id}}" class="text-white">{{object.passport_name}}</a>
+        </li>
+
+
+        <hr/>
+        {% empty %}
+        <li>
+            No member register yet.
+        </li>
+        {% endfor %}
+    </ul>
+        <a href="/" class="text-white"><--Back</a>
+</div>
+{% endblock content %}

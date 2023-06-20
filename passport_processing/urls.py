@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
-from .views import PassportProcessing as passport
+from .views import PassportList, PassportDetail
 
 urlpatterns = [
 
-    path('new/', passport.new_passport, name='new_passport'),
-    path('renew/', passport.renew_passport, name='renew_passport'),
+    path('passport_list/', PassportList.as_view(), name='passport-list'),
+    path('passport_detail/<pk>', PassportDetail.as_view(), name='passport-detail'),
 
 ]
