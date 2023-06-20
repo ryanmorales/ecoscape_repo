@@ -12,7 +12,8 @@ class Visa_Processing_Admin_Form(forms.ModelForm):
     
     class Meta:
         model = Visa
-        exclude = ['created_by','updated_by','date_created','date_updated']    
+        exclude = ['created_by','updated_by','date_created','date_updated']
+        widgets = {'appointment_date': forms.DateInput(attrs={'type': 'date'})}
 
 class Visa_Processing_Admin(admin.ModelAdmin):
     list_display =[

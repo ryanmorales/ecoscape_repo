@@ -38,6 +38,7 @@ class VisaCreateView(BSModalCreateView):
 
 class VisaUpdateView(BSModalUpdateView):
     model = Visa
+    context_object_name = 'visa-processing-update'
     template_name = 'visa_processing/visa-processing-update.html'
     form_class = VisaProcessingForm
     success_message = 'Success: Visa Processing transaction was updated.'

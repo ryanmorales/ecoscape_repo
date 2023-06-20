@@ -5,6 +5,9 @@ class VisaProcessingForm(BSModalModelForm):
     class Meta:
         model = Visa
         exclude = ['created_by','updated_by','date_created','date_updated']
+        widgets = {
+            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
+        }
 
 
 class VisaFilterForm(BSModalForm):
