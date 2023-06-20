@@ -9,6 +9,7 @@ from demy_services.settings import TEMPLATES
 
 from . models import Eservices
 from passport_processing import models as port_models
+from visa_processing import models as visa_models
 import os
 
 # Create your views here.
@@ -34,7 +35,13 @@ def eservices_service(request, pk):
         'services': services,
     }
 
-    if pk == 3:
+    if pk == 2:
+        url = 'visa_processing/visa-processing-list.html'
+
+        context['visa_processing_list'] = visa_models.Visa.objects.all()
+
+        return render(request, url, context=context)
+    elif pk == 3:
         for service in services:
             print(service)
 
