@@ -33,7 +33,7 @@ class VisaCreateView(BSModalCreateView):
     template_name = 'visa_processing/visa-processing-create.html'
     form_class = VisaProcessingForm
     success_message = 'Success: Visa Processing transaction was created.'
-    success_url = reverse_lazy('visa-processing-list')
+    success_url = reverse_lazy('visa-processing')
 
 
 class VisaUpdateView(BSModalUpdateView):
@@ -41,7 +41,7 @@ class VisaUpdateView(BSModalUpdateView):
     template_name = 'visa_processing/visa-processing-update.html'
     form_class = VisaProcessingForm
     success_message = 'Success: Visa Processing transaction was updated.'
-    success_url = reverse_lazy('visa-processing-list')
+    success_url = reverse_lazy('visa-processing')
 
 
 class VisaReadView(BSModalReadView):
@@ -61,4 +61,4 @@ class VisaFilterView(BSModalFormView):
         return response
 
     def get_success_url(self):
-        return reverse_lazy('visa-processing-list') + self.filter
+        return reverse_lazy('visa-processing') + self.filter
