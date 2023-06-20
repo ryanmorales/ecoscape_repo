@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('passport_processing', '0001_initial'),
+        ('passport_process', '0001_initial'),
     ]
 
     operations = [
