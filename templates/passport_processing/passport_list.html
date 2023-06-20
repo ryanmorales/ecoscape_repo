@@ -12,10 +12,20 @@
 <div class="container">
     <h5 align="center">Welcome!!! View all Passport Processing. </h5>
     <hr>
-    <ul type="1">
-        {% for object in objects %}
+    <ol type="1">
+        {% for object in object_list %}
         <li>
-            <a href="/passport_detail/{{object.id}}" class="text-white">{{object.passport_name}}</a>
+            <a href="/passport_detail/{{object.id}}" class="text-blue">
+                <span>
+                {% for k, v in apply_type %}
+                    {% if k == object.application_type %}
+                        {{ v }}
+                    {% endif %}
+                {% endfor %}
+                </span>
+                <alt>for</alt>
+                <label>{{ object.applicant.full_name }}</label>
+            </a>
         </li>
 
 
@@ -25,7 +35,7 @@
             No member register yet.
         </li>
         {% endfor %}
-    </ul>
+    </ol>
         <a href="/" class="text-white"><--Back</a>
 </div>
 {% endblock content %}
