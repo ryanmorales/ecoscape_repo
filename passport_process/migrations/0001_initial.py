@@ -78,8 +78,8 @@ class Migration(migrations.Migration):
                 ('has_foreign_passport', models.BooleanField(default=False)),
                 ('emergency_contact_person', models.CharField(max_length=100)),
                 ('emergency_contact_number', models.CharField(max_length=60)),
-                ('applicant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='passport_processing.applicant')),
-                ('appointment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='passport_processing.appointment')),
+                ('applicant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='passport_process.applicant')),
+                ('appointment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='passport_process.appointment')),
             ],
             options={
                 'verbose_name': 'Passport',

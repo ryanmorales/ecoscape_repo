@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PassportProcessingConfig(AppConfig):
-    name = 'passport_processing'
+    name = 'passport_process'

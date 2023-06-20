@@ -8,7 +8,7 @@ from demy_services.settings import BASE_DIR
 from demy_services.settings import TEMPLATES
 
 from . models import Eservices
-from passport_processing import models as port_models
+from passport_process import models as port_models
 from visa_processing import models as visa_models
 import os
 
@@ -49,7 +49,7 @@ def eservices_service(request, pk):
         context['apply_type'] = port_models.Passport.APPLICATION_TYPE
         print(context['apply_type'])
 
-        url = 'passport_processing/passport_list.html'
+        url = 'passport_process/passport-process-list.html'
 
         return render(request, url , context=context)
     else:

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     'eservices',
     'visa_processing',
-    'passport_processing',
+    'passport_process',
 ]
 
 MIDDLEWARE = [
