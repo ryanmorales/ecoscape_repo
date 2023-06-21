@@ -14,7 +14,7 @@ class VisaListView(generic.ListView):
    
     context_object_name = 'visa_processing_list'
     template_name = 'visa_processing/visa-processing-list.html'
-    paginate_by = 20
+    paginate_by = 5
 
     def get_queryset(self):
 
@@ -47,9 +47,8 @@ class VisaUpdateView(BSModalUpdateView):
 
 class VisaReadView(BSModalReadView):
     model = Visa
-    context_object_name = 'visa_processing_view'
+    context_object_name = 'visa-processing-view'
     template_name = 'visa_processing/visa-processing-view.html'
-
 
 
 class VisaFilterView(BSModalFormView):
