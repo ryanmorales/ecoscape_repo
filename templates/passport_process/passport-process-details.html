@@ -1,49 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block service-links %}
-    <li class="breadcrumb-item "><a href="{% url 'passport-detail' %}">Passport Processing Details</a></li>
-{% endblock %}
-
-
 {% block content %}
-
 <div class="container">
-    <h5 align="center">Welcome to Fitness Club!!! View your Gym Member complete detail.</h5>
+    <h5 align="center">Welcome to EcoScape Travel and Tours!!! View your Passport Processing complete detail.</h5>
     <hr>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Date of Birth</th>
-                <th scope="col">Personal Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Email</th>
-                <th scope="col">Weight</th>
-                <th scope="col">Action</th>
+                <th scope="col">Client Surname</th>
+                <th scope="col">Client Given Name</th>
+                <th scope="col">Application Type</th>
+                <th scope="col">Applicant Surname</th>
+                <th scope="col">Applicant Given Name</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Appointment Location</th>
+                <th scope="col">Status</th>
+                <th scope="col">OR Number</th>
             </tr>
         </thead>
         <tbody>
-
             <tr>
-                <td>{{object.name}}</td>
-                <td>{{object.gender}}</td>
-                <td>{{object.date_of_birth}}</td>
-                <td>{{object.personal_address}}</td>
-                <td>{{object.city}}</td>
-                <td>{{object.state}}</td>
-                <td>{{object.email}}</td>
-                <td>{{object.weight}}</td>
-                <td><a class="btn btn-warning" href="/{{object.pk}}/updatemember/" role="button">Update</a><a
-                        class="btn btn-danger" href="/{{object.pk}}/deletemember" role="button">Delete</a>
+                <td>{{object.client_surname}}</td>
+                <td>{{object.client_given_name}}</td>
+                <td>{{object.application_type}}</td>
+                <td>{{object.applicant_surname}}</td>
+                <td>{{object.applicant_given_name}}</td>
+                <td>{{object.appointment_date}}</td>
+                <td>{{object.appointment_location}}</td>
+                <td>{{object.status}}</td>
+                <td>{{object.or_number}}</td>
+                <td>
+                    <a class="btn btn-warning" href="passport_process/{{object.pk}}/update/" role="button">Update</a>
+                    <a class="btn btn-danger" href="passport_process/{{object.pk}}/delete" role="button">Delete</a>
                 </td>
             </tr>
 
         </tbody>
     </table>
-    <a href="/listmembers" class="text-white"><--Back to list</a>
+    <a href="passport_process/list/" class="text-white"><--Back to list</a>
 </div>
 
 {% endblock content %}
