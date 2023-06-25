@@ -62,8 +62,8 @@ class PassportUpdateView(generic.UpdateView):
 
     form_class = PassportProcessForm
     context_object_name = 'passport_process_view'
-    success_message = 'Success: Visa Processing transaction was updated.'
-    success_url = reverse_lazy('visa-processing-list')
+    success_message = 'Success: Passport Process transaction was updated.'
+    success_url = reverse_lazy('passport-process-list')
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -71,14 +71,35 @@ class PassportUpdateView(generic.UpdateView):
         # Add in a QuerySet of all the books
         services = Eservices.objects.filter(services_status=True)
         context["nav_services"] = services
-        context['title'] = 'Visa Processing List'
+        context['title'] = 'Passport Processing List'
 
         return context
 
 
 class PassportReadView(BSModalReadView):
     model = Passport
+    context_object_name = 'passport_process_view'
+    template_name = 'passport_process/passport-process-view.html'
 
 
 class PassportFilterView(BSModalFormView):
     form_class = PassportFilterForm
+    template_name = 'passport_process/passport-process-filter.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        services = Eservices.objects.filter(services_status=True)
+        context["nav_services"] = services
+        context['title'] = 'Passport Processing List'
+
+        return context
+
+    def form_valid(self, form):
+        self.filter = '?client_surname=' + form.cleaned_data['client_surname'] + '&or_number=' + form.cleaned_data['or_number']
+        response = super().form_valid(form)
+        return response
+
+    def get_success_url(self):
+        return reverse_lazy('passport-process-list') + self.filter
