@@ -27,6 +27,7 @@ class PassportListView(generic.ListView):
         else:
             return Passport.objects.order_by('-date_updated')
 
+
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
@@ -48,10 +49,31 @@ class PassportDetailsView(generic.DetailView):
 
 class PassportCreateView(generic.CreateView):
     model = Passport
+    template_name = 'passport_process/passport-process-create.html'
+    form_class = PassportProcessForm
+    success_message = 'Success: New Passport Processing transaction was created.'
+    success_url = reverse_lazy('passport-process-list')
 
 
 class PassportUpdateView(generic.UpdateView):
     model = Passport
+    context_object_name = 'passport_process_update'
+    template_name = 'passport_process/passport-process-update.html'
+
+    form_class = PassportProcessForm
+    context_object_name = 'passport_process_view'
+    success_message = 'Success: Visa Processing transaction was updated.'
+    success_url = reverse_lazy('visa-processing-list')
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        services = Eservices.objects.filter(services_status=True)
+        context["nav_services"] = services
+        context['title'] = 'Visa Processing List'
+
+        return context
 
 
 class PassportReadView(BSModalReadView):
