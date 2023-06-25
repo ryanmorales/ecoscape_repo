@@ -36,7 +36,7 @@ class Visa(models.Model):
     status = models.CharField(max_length=25, choices=STATUS_CHOICES, default=None)
     country_visa = models.CharField(max_length=25, choices=COUNTRY_CHOICES, default=None)
     visa_form = models.BooleanField(default=False)
-    appointment_date = models.DateTimeField(null=True, blank=True)
+    appointment_date = models.DateField(null=True, blank=True)
     or_number = models.CharField(max_length=50, blank=False)
     or_receipt = models.ImageField(upload_to='images/', default=None, blank=True)
     service_fee = models.DecimalField(max_digits=9,decimal_places=2, default=None)
