@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'eservices',
     'visa_processing',
     'passport_process',
+    'sanction_board',
 ]
 
 MIDDLEWARE = [

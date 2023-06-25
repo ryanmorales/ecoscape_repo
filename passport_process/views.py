@@ -1,32 +1,62 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.http import Http404, JsonResponse, HttpResponse
-from demy_services.base import BaseViewSet
-from rest_framework.decorators import action
-
-from .models import PassportProcess, PassportAppointment, PassportApplicant
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.urls import reverse_lazy
+from django.views import generic
+from .models import Passport
+from passport_process.forms import PassportProcessForm, PassportFilterForm
+from django.shortcuts import get_object_or_404
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalFormView
+from eservices.models import Eservices
 
 
-class PassportList(ListView):
-    model = PassportProcess
-    queryset = PassportProcess.objects.all()
+class PassportListView(generic.ListView):
+    content_name_object = 'passport_process_list'
+    template_name = 'passport_process/passport-process-list.html'
+    path_name = 'passport-process-list'
+    paginate_by = 5
+
+    def get_queryset(self):
+        surname = self.request.GET.get('client_surname') or None
+        o_r_num = self.request.GET.get('or_number') or None
+
+        if surname:
+            return Passport.objects.filter(client_surname__contains=surname)
+        elif o_r_num:
+            return Passport.objects.filter(or_number__contains=o_r_num)
+        else:
+            return Passport.objects.order_by('-date_updated')
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        services = Eservices.objects.filter(services_status=True)
+        context["nav_services"] = services
+        context['title'] = 'Passport Processing List'
+
+        return context
 
 
-class PassportDetail(DetailView):
-    passport = PassportProcess
-    model = PassportProcess
+class PassportDetailsView(generic.DetailView):
+    content_name_object = 'passport_process_details'
+    template_name = 'passport_process/passport-process-details.html'
+
+    passport = Passport
+    model = Passport
 
 
-class PassportProcess(BaseViewSet):
+class PassportCreateView(generic.CreateView):
+    model = Passport
 
-    @staticmethod
-    def new_passport(self, request):
-        render(BaseViewSet.unauthorized_response())
 
-    @staticmethod
-    def renew_passport(self, request):
-        pass
+class PassportUpdateView(generic.UpdateView):
+    model = Passport
 
+
+class PassportReadView(BSModalReadView):
+    model = Passport
+
+
+class PassportFilterView(BSModalFormView):
+    form_class = PassportFilterForm

@@ -1,51 +1,48 @@
 from django.contrib import admin
-from . models import PassportProcess, PassportApplicant, PassportAppointment
+from django import forms
+from . models import Passport
+
+
+class PassportProcessAdminForm(forms.ModelForm):
+    class Meta:
+        model = Passport
+        exclude = ['created_by', 'updated_by', 'date_created', 'date_updated']
+        widgets = {'appointment_date': forms.DateInput(attrs={'type': 'date'})}
 
 
 class PassportProcessAdmin(admin.ModelAdmin):
     list_display =[
-        'id', 'client_surname', 'client_given_name', 'client_contact_number', 'passport_application_type', 'passport_applicant_count'
+        'passport_process_id',
+        'client_surname',
+        'client_given_name',
+        'client_contact_number',
+        'application_type',
+        'status',
+        'created_by',
+        'updated_by',
+        'date_created',
+        'date_updated',
     ]
+    form = PassportProcessAdminForm
 
-    search_fields = [
-        'client_surname', 'client_given_name'
-    ]
+    def save_model(self, request, obj, form, change):
+
+        if not obj.passport_process_id:
+            obj.created_by = request.user
+            obj.updated_by = request.user
+
+        if change and obj.passport_process_id:
+            obj.updated_by = request.user
+
+        return super().save_model(request, obj, form, change)
 
     def name(self, obj):
         return "%s %s" % (obj.client_given_name, obj.client_surname)
 
-    list_filter = (
-        ('passport_applicant', admin.RelatedFieldListFilter),
-        ('passport_application_type'),
-        ('passport_applicant_count'),
-    )
-
     name.short_description = "Passport Process"
 
 
-class PassportApplicantAdmin(admin.ModelAdmin):
-    list_display = [
-        'id', 'first_name', 'last_name', 'email_address'
-    ]
-
-    search_fields = [
-        'first_name', 'last_name', 'email_address'
-    ]
-
-
-class PassportAppointmentAdmin(admin.ModelAdmin):
-    list_display = [
-        'id', 'appointment_type', 'location_site', 'date', 'time'
-    ]
-
-    search_fields = [
-        'appointment_type', 'date', 'time'
-    ]
-
-
-
-
-admin.site.register(PassportProcess, PassportProcessAdmin)
-admin.site.register(PassportApplicant, PassportApplicantAdmin)
-admin.site.register(PassportAppointment, PassportAppointmentAdmin)
-
+admin.site.register(Passport, PassportProcessAdmin)
+admin.site.site_header = "EcoScape Travel and Tours Admin"
+admin.site.site_title = "Passport Processing Admin"
+admin.site.index_title = "Passport Processing Admin"
