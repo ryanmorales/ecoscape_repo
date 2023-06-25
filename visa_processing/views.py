@@ -7,6 +7,7 @@ from .models import Visa
 from visa_processing.forms import VisaProcessingForm, VisaFilterForm
 from django.shortcuts import get_object_or_404
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalFormView
+from eservices import models as e_models
 
 
 # Create your views here.
@@ -37,11 +38,16 @@ class VisaCreateView(BSModalCreateView):
 
 
 class VisaUpdateView(BSModalUpdateView):
+    services = e_models.objects.filter(services_status=True)
+    context = {
+        'services': services,
+    }
     model = Visa
     template_name = 'visa_processing/visa-processing-update.html'
     form_class = VisaProcessingForm
+    context_object_name = 'visa_processing_view'
     success_message = 'Success: Visa Processing transaction was updated.'
-    success_url = reverse_lazy('visa-processing-list')
+    success_url = reverse_lazy('visa-processing-list', context)
 
 
 class VisaReadView(BSModalReadView):
