@@ -1,13 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
-from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from visa_processing import views as visa_views
+from passport_process import views as port_views
+
 
 urlpatterns = [
 
-    path('', views.eservices, name='eservices'),
-    path('service/<int:pk>', views.eservices_service, name='eservices-service'),
-    path('visa-processing/', include('visa_processing.urls')),
+    path('visa_processing/list/', visa_views.VisaListView.as_view(), name='visa-processing-list'),
+    path('passport_process/list/', port_views.PassportListView.as_view(), name='passport-process-list'),
 
 ]

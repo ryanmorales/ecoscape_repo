@@ -1,28 +1,28 @@
-
 {% load static %}
-    <nav class="navbar navbar-expand-lg bg-primary justify-content-center steady_nav">
-
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
-        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
-            <ul class="navbar-nav ms-auto">
-
-                {% for service in services %}
-
+{% load humanize %}
+{% block content %}
+<!-- Topbar header - style you can find in pages.scss -->
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-light">
+        <!-- Logo -->
+        <div class="navbar-header align-left">
+            <a class="navbar-brand" href="{% url 'sanction-board' %}">
+                <img src="{% static 'assets/images/lucid_launcher.png' %}" alt="demy_services" class="img-responsive p-1" style="max-height: 70px;" />
+            </a>
+        </div>
+        <div class="navbar-collapse" style="justify-content: flex-end">
+            <ul class="navbar-nav mr-auto mt-md-0">
+                {% for service in nav_services %}
                     <li class="nav-item">
-                        <a class="btn btn-alert navbar-btn text-danger text-white" type="button"  href="{% url 'eservices-service' service.services_id %}">
-                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
-                            {{ service.services_name }}
+                        <input name="hdn_service_path" type="hidden" value="url({{ service.services_slug }}-list)"/>
+                        <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="{% url service.services_slug|add:'-list'|escape %}">
+                            <i class="mdi mdi-menu">{{ service.services_name }}</i>
+                            <i></i>
                         </a>
                     </li>
-
                 {% endfor %}
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
             </ul>
         </div>
     </nav>
-
-<script type="text/javascript">
-
-</script>
+</header>
+{% endblock content %}

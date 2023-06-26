@@ -1,41 +1,136 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block service-links %}
-    <div>
-        <li class="breadcrumb-item "><a href="{% url 'eservices' %}">Home</a></li>
-    </div>
-{% endblock %}
-
 {% block content %}
 
-<div class="container">
-    <h5 align="center">Welcome!!! View all Passport Processing. </h5>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <button
+        id="create-transaction"
+        type="button"
+        data-popup-url="{%url 'visa-processing-create' %}"
+        class="btn btn-sm btn-success float-start"
+        name="button"
+        >
+        New</button>
+
+    <button type="button" class="btn btn-sm btn-success bs-modal float-end me-1" href="#">Reports</button>
+
+    <button
+        id="filter-transaction"
+        type="button"
+        class="filter-transaction btn btn-sm btn-success float-end me-1"
+        name="button"
+        data-form-url="{% url 'visa-processing-filter' %}"
+        >
+        Filter</button>
+
+    <br>
     <hr>
-    <ol type="1">
-        {% for object in object_list %}
-        <li>
-            <a href="/passport_detail/{{object.id}}" class="text-blue">
-                <span>
-                {% for k, v in apply_type %}
-                    {% if k == object.application_type %}
-                        {{ v }}
-                    {% endif %}
-                {% endfor %}
-                </span>
-                <alt>for</alt>
-                <label>{{ object.applicant.full_name }}</label>
-            </a>
-        </li>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">OR #</th>
+                <th scope="col">Client Surname</th>
+                <th scope="col">Client Given Name</th>
+                <th scope="col">Foreign Passport Holder</th>
+                <th scope="col">Application Type</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Appointment Location</th>
+                <th scope="col">Created By</th>
+                <th scope="col">Updated By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for passport in passport_process_list %}
+            <tr>
+                <td>{{ passport.or_number }}</td>
+                <td>{{ passport.client_surname }}</td>
+                <td>{{ passport.client_given_name }}</td>
+                <td>{{ passport.foreign_passport }}</td>
+                <td>{{ passport.passport_application_type }}</td>
+                <td>{{ passport.passport_appointment_id }}</td>
+                <td>{{ passport.created_by }}</td>
+                <td>{{ passport.updated_by }}</td>
+                <td>
+                    <button type="button" class="view-transaction bs-modal btn btn-sm btn-primary" data-form-url="{% url 'passport-process-view' passport.passport_process_id %}">
+                        View
+                    </button>
+                    <button type="button" class="update-transaction bs-modal btn btn-sm btn-warning" data-form-url="{% url 'passport-process-update' passport.passport_process_id %}">
+                        Update
+                    </button>
+                    <button type="button" class="delete-transaction bs-modal btn btn-sm btn-danger" data-form-url="">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
 
+        {% for i in paginator.page_range %}
 
-        <hr/>
-        {% empty %}
-        <li>
-            No member register yet.
-        </li>
+            {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
         {% endfor %}
-    </ol>
-        <a href="/" class="text-white"><--Back</a>
-</div>
+
+        {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+        </ul>
+    {% endif %}
+
+<script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        modalForm(document.getElementById('create-transaction'), {
+        formURL: "{% url 'passport-process-create' %}",
+        })
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        var updateButtons = document.getElementsByClassName("update-transaction");
+        for (var index=0; index < updateButtons.length; index++) {
+            modalForm(updateButtons[index], {
+            formURL: updateButtons[index]["dataset"]["formUrl"],
+            isDeleteForm: false
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        var viewButtons = document.getElementsByClassName("view-transaction");
+        for (var index=0; index < viewButtons.length; index++) {
+            modalForm(viewButtons[index], {
+            formURL: viewButtons[index]["dataset"]["formUrl"],
+            isDeleteForm: false
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        modalForm(document.getElementById('filter-transaction'), {
+        formURL: "{% url 'passport-process-filter' %}",
+        })
+    });
+
+</script>
+
 {% endblock content %}

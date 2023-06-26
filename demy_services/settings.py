@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    
+
     'bootstrap5',
     'rest_framework',
     'phonenumber_field',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'eservices',
     'visa_processing',
     'passport_process',
+    'sanction_board',
 ]
 
 MIDDLEWARE = [
