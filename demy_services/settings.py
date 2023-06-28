@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'visa_processing',
     'passport_process',
     'sanction_board',
+    'es_calendar',
 ]
 
 MIDDLEWARE = [
