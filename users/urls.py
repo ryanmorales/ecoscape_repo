@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import RegisterView, myLoginView
+from dashboard import views as dash_view
 
 from django.contrib.auth.views import (
     LogoutView,
@@ -10,6 +11,7 @@ from django.contrib.auth.views import (
 )
 
 urlpatterns = [
+    path('', dash_view.Dashboard.home, name='home'),
     path('login/', myLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('register/', RegisterView.as_view(),name='register'),

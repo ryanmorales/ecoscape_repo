@@ -35,5 +35,6 @@ class myLoginView(LoginView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
+
 def home(request):
-    return render(request,'home.html')
+    return render(request, '', 'home.html')
