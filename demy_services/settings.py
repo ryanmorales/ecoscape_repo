@@ -46,14 +46,18 @@ INSTALLED_APPS = [
     'eservices',
     'visa_processing',
     'passport_process',
-    'sanction_board',
+    'dashboard',
+    'users',
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni-form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -65,7 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -91,9 +95,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ecoscape_db',
-        'USER': 'ecouser',
-        'PASSWORD': 'ecouserPasswd',
-        'HOST': '45.34.73.66',
+        #'USER': 'ecouser',
+        #'PASSWORD': 'ecouserPasswd',
+        #'HOST': '45.34.73.66',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
         'PORT' : '5432',
     }
 }
@@ -148,3 +155,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+LOGIN_URL = 'login'

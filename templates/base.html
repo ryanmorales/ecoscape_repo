@@ -26,30 +26,62 @@
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
 
-<body>
-    <div id="main-wrapper">
-        {% include 'eservices/eservices.html' %}
+<body class="fix-header fix-sidebar card-no-border" style="width: 1230px">
+    <header class="header">
+        <div id="container">
+            <nav class="nav">
+            <img src="{% static 'assets/images/lucid_launcher.png' %}" alt="demy_services" class="img-responsive p-1" style="max-height: 70px;" />
+            <a href="{% url 'home' %}" class="logo">EcoSpace</a>
 
-        <!-- Page wrapper  -->
-        <div class="page-wrapper">
-            <!-- Container fluid  -->
-            <div class="container-fluid">
-                <div class="row page-titles justify-content-center">
-                    <div class="col-md-6 col-12 align-self-center">
-                        <h3 style="white-space: nowrap;">{{ title }}</h3>
+                <a href="{%url 'home'%}"><i class="bi bi-house-fill"></i>Dashboard</a>
+                {%if request.user.is_authenticated %}
+                    {% include 'eservices/eservices.html' %}
+                    <span><i class="bi bi-plus-circle"></i> Hi {{ request.user.username | title }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline">Logout</a>
+                {%else%}
+                    <a href="{% url 'login' %}" class="btn btn-outline">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-primary">Join Now</a>
+                {%endif%}
+            </nav>
+        </div>
+  	</header>
+
+    <main>
+        <div id="container">
+            <!-- Page wrapper  -->
+            <div class="page-wrapper">
+                <!-- Container fluid  -->
+                <div class="container-fluid">
+                    <div class="row page-titles justify-content-center">
+                        <div class="col-md-6 col-12 align-self-center">
+
+                            <h3 style="white-space: nowrap;">{{ title }}</h3>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}">
+                                       {{message}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
+
+                {% block content %}
+                {% endblock content %}
+
             </div>
         </div>
-    </div>
-    <div id="section">
+    </main>
+    <footer class="footer">
         <div class="container">
-            {% block content %}
-            {% endblock content %}
+            <p>© Copyright {% now "Y" %} by <a href="demy_services">EcoScape Travel and Tours</a></p>
         </div>
-    </div>
+    </footer>
 
 </body>
 

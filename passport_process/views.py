@@ -4,26 +4,24 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Passport
+from .apps import PassportProcessConfig as pass_config
 from passport_process.forms import PassportProcessForm, PassportFilterForm
 from django.shortcuts import get_object_or_404
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalFormView
 from eservices.models import Eservices
 
 
+# Create your views here.
 class PassportListView(generic.ListView):
     content_name_object = 'passport_process_list'
     template_name = 'passport_process/passport-process-list.html'
-    path_name = 'passport-process-list'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
-        surname = self.request.GET.get('client_surname') or None
-        o_r_num = self.request.GET.get('or_number') or None
-
-        if surname:
-            return Passport.objects.filter(client_surname__contains=surname)
-        elif o_r_num:
-            return Passport.objects.filter(or_number__contains=o_r_num)
+        if self.request.GET.get('client_surname'):
+            return Passport.objects.filter(client_surname__contains=self.request.GET.get('client_surname'))
+        elif self.request.GET.get('or_number'):
+            return Passport.objects.filter(or_number__contains=self.request.GET.get('or_number'))
         else:
             return Passport.objects.order_by('-date_updated')
 
@@ -35,6 +33,7 @@ class PassportListView(generic.ListView):
         services = Eservices.objects.filter(services_status=True)
         context["nav_services"] = services
         context['title'] = 'Passport Processing List'
+        context['app_name'] = pass_config.name
 
         return context
 
@@ -47,15 +46,26 @@ class PassportDetailsView(generic.DetailView):
     model = Passport
 
 
-class PassportCreateView(generic.CreateView):
+class PassportCreateView(BSModalCreateView):
     model = Passport
+    context_object_name = 'passport_process_create'
     template_name = 'passport_process/passport-process-create.html'
+
     form_class = PassportProcessForm
     success_message = 'Success: New Passport Processing transaction was created.'
     success_url = reverse_lazy('passport-process-list')
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        services = Eservices.objects.filter(services_status=True)
+        context["nav_services"] = services
+        context['title'] = 'Passport Processing List'
 
-class PassportUpdateView(generic.UpdateView):
+        return context
+
+class PassportUpdateView(BSModalUpdateView):
     model = Passport
     context_object_name = 'passport_process_update'
     template_name = 'passport_process/passport-process-update.html'
@@ -93,6 +103,7 @@ class PassportFilterView(BSModalFormView):
         services = Eservices.objects.filter(services_status=True)
         context["nav_services"] = services
         context['title'] = 'Passport Processing List'
+        context['app_name'] = pass_config.name
 
         return context
 

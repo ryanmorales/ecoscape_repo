@@ -19,7 +19,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('sanction_board.urls')),
+    path('',include('users.urls')),
+    #path("users/", include("django.contrib.auth.urls")),
+    #path("", TemplateView.as_view(template_name="homebase.html"), name="home"),
+    # If auth is implemented
+    #path('login/, include('auth.urls'))
+    # place holder for calendar
+    path('', include('dashboard.urls')),
     path('eservices/', include('eservices.urls')),
     path('visa_processing/', include('visa_processing.urls')),
     path('passport_process/', include('passport_process.urls')),
