@@ -2,13 +2,6 @@
 {% load humanize %}
 {% block content %}
 <!-- Topbar header - style you can find in pages.scss -->
-<header class="topbar">
-    <nav class="navbar top-navbar navbar-expand-md navbar-light">
-        <div class="navbar-brand pull-left">
-            <i class="wi wi-sunset"></i>
-            <img src="{% static 'assets/images/starpro.png' %}" alt="profile"
-                        class="img-responsive p-1" style="max-height: 70px;" />
-        </div>
         <div class="navbar-brand pull-right">
             <ul class="navbar-nav mr-auto mt-md-0">
                 {% for service in nav_services %}
@@ -22,40 +15,4 @@
                 {% endfor %}
             </ul>
         </div>
-    </nav>
-</header>
 {% endblock content %}
-
-
-
-<nav class="navbar top-navbar navbar-expand-md navbar-light">
-        <!-- ============================================================== -->
-        <!-- Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'client-dashboard' %}">
-                {% if request.session.account_info.client.client_platform_logo %}
-                    <img src="{{ api_domain }}{{ request.session.account_info.client.client_platform_logo }}" alt="homepage"
-                        class="img-responsive p-1" style="max-height: 70px;" />
-                {% elif request.session.account_info.dist_platform_logo %}
-                    <img src="{{ api_domain }}{{ request.session.account_info.dist_platform_logo }}" alt="homepage" class="img-responsive p-1" style="max-height: 70px;" />
-                {% else %}
-                    <!-- Logo icon --><b>
-                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                        <!-- Dark Logo icon -->
-                        <img src="{% static 'assets/images/psymetrics/logo-text-new.svg' %}" alt="homepage" class="dark-logo" />
-                        <!-- Light Logo icon -->
-                        <img src="{% static 'assets/images/psymetrics/logo-icon-new.svg' %}" alt="homepage" class="light-logo" />
-                    </b>
-                    <!--End Logo icon -->
-                    <!-- Logo text --><span>
-                        <!-- Dark Logo icon -->
-                        <img src="{% static 'assets/images/psymetrics/logo-icon-new.svg' %}" alt="homepage" class="dark-logo" />
-                        <!-- Light Logo icon -->
-                        <img src="{% static 'assets/images/psymetrics/logo-text-new.svg' %}" alt="homepage" class="light-logo" /></span>
-                {% endif %}
-            </a>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->

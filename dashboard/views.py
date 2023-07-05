@@ -18,6 +18,8 @@ class Dashboard(View):
     def logout(self, request):
         pass
 
+    def home(request):
+        return render(request, 'home.html')
 
-def home(request):
-    return render(request,'home.html')
+
+

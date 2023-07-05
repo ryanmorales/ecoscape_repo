@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<div class="center">
     <!-- Modal 1 with id="create-book"-->
     <div class="modal" id="modal_create_form" tabindex="-1" role="dialog"  aria-modal="true">
         <div class="modal-dialog" role="document">
@@ -17,6 +18,7 @@
         </div>
     </div>
     <br/>
+    <section><div class="feature-content">
     <button id="create-transaction" type="button" data-popup-url="{%url 'passport-process-create' %}"
         class="create-transaction btn btn-sm btn-success float-start" data-toggle="modal"
             data-target="#modal_create_form">New</button>
@@ -92,7 +94,8 @@
         {% endif %}
         </ul>
     {% endif %}
-
+    </div></section>
+</div>
 <script type="text/javascript">
 
     document.addEventListener('DOMContentLoaded', (e) => {

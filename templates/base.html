@@ -41,6 +41,7 @@
                 {%if request.user.is_authenticated %}
                     {% include 'eservices/eservices.html' %}
                     <span><i class="bi bi-plus-circle"></i> Hi {{ request.user.username | title }}</span>
+                    <img src="{% static 'assets/images/starpro.png' %}" alt="profile" class="img-responsive p-1" style="max-height: 70px;" />
                     <a href="{% url 'logout' %}" class="btn btn-outline">Logout</a>
                 {%else%}
                     <a href="{% url 'login' %}" class="btn btn-outline">Login</a>

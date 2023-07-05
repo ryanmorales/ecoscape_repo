@@ -95,12 +95,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ecoscape_db',
-        #'USER': 'ecouser',
-        #'PASSWORD': 'ecouserPasswd',
-        #'HOST': '45.34.73.66',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'USER': 'ecouser',
+        'PASSWORD': 'ecouserPasswd',
+        'HOST': '45.34.73.66',
+        #'USER': 'postgres',
+        #'PASSWORD': 'root',
+        #'HOST': 'localhost',
         'PORT' : '5432',
     }
 }
