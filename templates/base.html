@@ -16,7 +16,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />-->
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
@@ -25,10 +25,13 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>-->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.8/index.global.min.js" integrity="sha256-BDUJwEsCDLN5B5WF9Y0ud9vwgTRMR2sDPbywL+sBwR8=" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -57,6 +60,16 @@
 </body>
 
 <script type="text/javascript">
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    });
+
+/***
 $(document).ready(function () {
     
         var calendar = $('#calendar').fullCalendar({
@@ -119,8 +132,8 @@ $(document).ready(function () {
                 
                 //var start = $.fullCalendar.formatDate(event.start, "MM-DD-YYYY HH:mm:ss");
                 //var end = $.fullCalendar.formatDate(event.end, "MM-DD-YYYY HH:mm:ss");
-                var start = $.fullCalendar.formatDate(event.start, "MM-DD-YYYY");
-                var end = $.fullCalendar.formatDate(event.end, "MM-DD-YYYY");
+                var start = $.fullCalendar.formatDate(event.start, "YYYY-MM-DD");
+                var end = $.fullCalendar.formatDate(event.end, "YYYY-MM-DD");
                 //var start = event.start;
                 //var end = event.end;
                 var client = event.client;
@@ -173,6 +186,7 @@ $(document).ready(function () {
         });
     
 });
+**/
 </script>
 
 </html>
