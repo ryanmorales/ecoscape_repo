@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'passport_process',
     'dashboard',
     'users',
+    'es_calendar',
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni-form'

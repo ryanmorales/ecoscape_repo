@@ -26,6 +26,7 @@ urlpatterns = [
     #path('login/, include('auth.urls'))
     # place holder for calendar
     path('dashboard/', include('dashboard.urls')),
+    path('', include('es_calendar.urls')),
     path('eservices/', include('eservices.urls')),
     path('visa_processing/', include('visa_processing.urls')),
     path('passport_process/', include('passport_process.urls')),
