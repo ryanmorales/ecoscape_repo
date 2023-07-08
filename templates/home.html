@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%load static %}
+
+{%block content%}
+    <div class="center">
+        <section class="feature">
+            <div class="feature-content">
+                <h1>Dashboard</h1>
+                <p>Dashboard Calendar: container for creating new transaction and viewing existing ones.</p>
+                <hr>
+                <a class="btn btn-primary cta" href="{% url 'register' %}">Get Started</a>
+            </div>
+            <img src="{% static 'assets/images/email-img.png' %}" alt="Login or Register" class="feature-image">
+        </section>
+    </div>
+
+{%endblock content%}

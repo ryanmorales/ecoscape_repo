@@ -2,6 +2,8 @@
 {% load humanize %}
 {% block content %}
 <!-- Topbar header - style you can find in pages.scss -->
+
+        <div class="navbar-brand pull-right">
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <!-- Logo -->
@@ -14,7 +16,7 @@
             <ul class="navbar-nav mr-auto mt-md-0">
                 {% for service in nav_services %}
                     <li class="nav-item">
-                        <input name="hdn_service_path" type="hidden" value="url({{ service.services_slug }}-list)"/>
+                        <input name="hdn_service_path" type="hidden" value="{{ service.services_slug }}-list"/>
                         <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="{% url service.services_slug|add:'-list'|escape %}">
                             <i class="mdi mdi-menu">{{ service.services_name }}</i>
                             <i></i>

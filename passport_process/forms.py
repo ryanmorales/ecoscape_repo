@@ -7,6 +7,7 @@ class PassportProcessForm(BSModalModelForm):
         exclude = ['created_by','updated_by','date_created','date_updated']
         widgets = {
             'appointment_date': forms.DateInput(attrs={'type': 'date'}),
+            'epp_passport_date_issued': forms.DateInput(attrs={'type': 'date'}),
         }
 
 

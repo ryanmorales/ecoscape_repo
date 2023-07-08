@@ -1,18 +1,13 @@
 from django.shortcuts import render
-
 from .models import Eservices
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def eservices(request):
 
     services = Eservices.objects.filter(services_status=True)
     template = "eservices/eservices.html"
-    services_context = []
-
-    for service in services:
-        print(service.services_id)
-        print(service.services_slug)
-        print(service.services_name)
 
     context = {
         'title': 'E-Services',

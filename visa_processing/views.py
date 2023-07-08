@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Visa
+from . apps import VisaProcessingConfig as visa_config
 from visa_processing.forms import VisaProcessingForm, VisaFilterForm
 from django.shortcuts import get_object_or_404
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView, BSModalReadView, BSModalFormView
@@ -14,12 +15,9 @@ from eservices.models import Eservices
 class VisaListView(generic.ListView):
     context_object_name = 'visa_processing_list'
     template_name = 'visa_processing/visa-processing-list.html'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
-
-        print(self.request.GET.get('or_number'))
-
         if self.request.GET.get('client_surname'):
             return Visa.objects.filter(client_surname__contains=self.request.GET.get('client_surname'))
         elif self.request.GET.get('or_number'):
@@ -36,6 +34,7 @@ class VisaListView(generic.ListView):
         services = Eservices.objects.filter(services_status=True)
         context["nav_services"] = services
         context['title'] = 'Visa Processing List'
+        context['app_name'] = visa_config.__name__
 
         return context
 
@@ -64,6 +63,7 @@ class VisaUpdateView(BSModalUpdateView):
         services = Eservices.objects.filter(services_status=True)
         context["nav_services"] = services
         context['title'] = 'Visa Processing List'
+        context['app_name'] = visa_config.name
 
         return context
 

@@ -1,11 +1,9 @@
-{% extends "base.html" %}
 {% load widget_tweaks %}
 
-{% block content %}
 <form method="post" action="">
     {% csrf_token %}
     <div class="modal-header">
-        <h3 class="modal-title">Create new transaction</h3>
+        <h3 class="modal-title">Create transaction</h3>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,7 +38,4 @@
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Create</button>
     </div>
-        
-
 </form>
-{% endblock content %}

@@ -2,33 +2,31 @@
 {% load static %}
 
 {% block content %}
+<div class="center">
+    <!-- Modal 1 with id="create-book"-->
+    <div class="modal" id="modal_create_form" tabindex="-1" role="dialog"  aria-modal="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
         </div>
     </div>
     <br/>
-    <button
-        id="create-transaction"
-        type="button"
-        data-popup-url="{%url 'visa-processing-create' %}"
-        class="btn btn-sm btn-success float-start"
-        name="button"
-        >
-        New</button>
+    <section><div class="feature-content">
+    <button id="create-transaction" type="button" data-popup-url="{%url 'passport-process-create' %}"
+        class="create-transaction btn btn-sm btn-success float-start" data-toggle="modal"
+            data-target="#modal_create_form">New</button>
 
     <button type="button" class="btn btn-sm btn-success bs-modal float-end me-1" href="#">Reports</button>
 
-    <button
-        id="filter-transaction"
-        type="button"
-        class="filter-transaction btn btn-sm btn-success float-end me-1"
-        name="button"
-        data-form-url="{% url 'visa-processing-filter' %}"
-        >
-        Filter</button>
+    <button id="filter-transaction" type="button" class="filter-transaction btn btn-sm btn-success float-end me-1"
+        name="button" data-form-url="{% url 'passport-process-filter' %}">Filter</button>
 
     <br>
     <hr>
@@ -96,41 +94,37 @@
         {% endif %}
         </ul>
     {% endif %}
-
+    </div></section>
+</div>
 <script type="text/javascript">
 
     document.addEventListener('DOMContentLoaded', (e) => {
-        modalForm(document.getElementById('create-transaction'), {
-        formURL: "{% url 'passport-process-create' %}",
-        })
-    });
+        var createModal = document.getElementById("create-transaction");
+        modalForm(createModal, {
+            formURL: "{% url 'passport-process-create' %}",
+            modalID: "#modal_create_form"
+        });
 
-    document.addEventListener('DOMContentLoaded', (e) => {
         var updateButtons = document.getElementsByClassName("update-transaction");
         for (var index=0; index < updateButtons.length; index++) {
             modalForm(updateButtons[index], {
-            formURL: updateButtons[index]["dataset"]["formUrl"],
-            isDeleteForm: false
+                formURL: updateButtons[index]["dataset"]["formUrl"],
+                isDeleteForm: false
             });
         }
-    });
 
-    document.addEventListener('DOMContentLoaded', (e) => {
         var viewButtons = document.getElementsByClassName("view-transaction");
         for (var index=0; index < viewButtons.length; index++) {
             modalForm(viewButtons[index], {
-            formURL: viewButtons[index]["dataset"]["formUrl"],
-            isDeleteForm: false
+                formURL: viewButtons[index]["dataset"]["formUrl"],
+                isDeleteForm: false
             });
         }
-    });
 
-    document.addEventListener('DOMContentLoaded', (e) => {
         modalForm(document.getElementById('filter-transaction'), {
-        formURL: "{% url 'passport-process-filter' %}",
-        })
+            formURL: "{% url 'passport-process-filter' %}",
+        });
     });
-
 </script>
 
 {% endblock content %}
