@@ -28,7 +28,8 @@ class myLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('dashboard')
+        return reverse_lazy('es_calendar')
+        #return reverse_lazy('dashboard')
 
     def form_invalid(self, form):
         messages.error(self.request, 'Invalid username or password')
