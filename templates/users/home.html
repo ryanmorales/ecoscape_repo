@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%load static %}
+
+{%block content%}
+     <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 text-center">
+                <div class="bg-image" style="background-image: url({% static 'assets/images/calengoo.png' %});background-repeat: no-repeat; background-size: 100%;">
+                    <div class="card-body p-5 text-warning text-center">
+                        <h1>Authentication Required</h1>
+                        <p>To view Application, Please Log-In to with your Users Account by clicking 'Sign In' or click 'Get Started' to Sign Up for one.</p>
+                        <hr>
+                        <a class="btn btn-primary cta" href="{% url 'register' %}">Get Started</a>
+                        <a class="btn btn-primary cta" href="{% url 'login' %}">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%endblock content%}
