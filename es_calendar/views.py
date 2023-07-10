@@ -3,9 +3,11 @@ from visa_processing.models import Visa
 from django.http import JsonResponse
 from django.views import View
 from eservices.models import Eservices
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def EsCalendar(request):                
 
     all_events = Visa.objects.filter(appointment_date__isnull=False)    
@@ -26,6 +28,7 @@ def EsCalendar(request):
     #return JsonResponse(out, safe=False) 
     return render(request,'es_calendar/es-calendar.html',context)
 
+@login_required
 def all_events(request):                                                                                                 
     all_events = Visa.objects.filter(appointment_date__isnull=False)                                                                                    
     out = []                                                                                                             
@@ -41,7 +44,7 @@ def all_events(request):
 
     return JsonResponse(out, safe=False)
 
-
+@login_required
 def update(request):
     start = request.GET.get("start", None)
     end = request.GET.get("end", None)

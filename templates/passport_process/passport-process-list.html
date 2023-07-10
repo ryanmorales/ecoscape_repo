@@ -2,7 +2,13 @@
 {% load static %}
 
 {% block content %}
-<div class="center">
+<div class="container">
+    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
     <!-- Modal 1 with id="create-book"-->
     <div class="modal" id="modal_create_form" tabindex="-1" role="dialog"  aria-modal="true">
         <div class="modal-dialog" role="document">
@@ -10,15 +16,7 @@
             </div>
         </div>
     </div>
-
-    <div class="modal" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-        </div>
-    </div>
     <br/>
-    <section><div class="feature-content">
     <button id="create-transaction" type="button" data-popup-url="{%url 'passport-process-create' %}"
         class="create-transaction btn btn-sm btn-success float-start" data-toggle="modal"
             data-target="#modal_create_form">New</button>
@@ -27,7 +25,6 @@
 
     <button id="filter-transaction" type="button" class="filter-transaction btn btn-sm btn-success float-end me-1"
         name="button" data-form-url="{% url 'passport-process-filter' %}">Filter</button>
-
     <br>
     <hr>
     <table class="table">
@@ -40,8 +37,6 @@
                 <th scope="col">Application Type</th>
                 <th scope="col">Appointment Date</th>
                 <th scope="col">Appointment Location</th>
-                <th scope="col">Created By</th>
-                <th scope="col">Updated By</th>
             </tr>
         </thead>
         <tbody>
@@ -52,9 +47,7 @@
                 <td>{{ passport.client_given_name }}</td>
                 <td>{{ passport.foreign_passport }}</td>
                 <td>{{ passport.passport_application_type }}</td>
-                <td>{{ passport.passport_appointment_id }}</td>
-                <td>{{ passport.created_by }}</td>
-                <td>{{ passport.updated_by }}</td>
+                <td>{{ passport.passport_appointment_date }}</td>
                 <td>
                     <button type="button" class="view-transaction bs-modal btn btn-sm btn-primary" data-form-url="{% url 'passport-process-view' passport.passport_process_id %}">
                         View
@@ -94,7 +87,6 @@
         {% endif %}
         </ul>
     {% endif %}
-    </div></section>
 </div>
 <script type="text/javascript">
 

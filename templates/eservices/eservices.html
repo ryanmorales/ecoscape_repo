@@ -1,29 +1,10 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+    {% for service in nav_services %}
 
-    <nav class="navbar top-navbar navbar-expand-md navbar-light">
-        <!-- Logo -->
-        <!--
-        <div class="navbar-header align-left">
-            <a class="navbar-brand" href="{% url 'es_calendar' %}">
-                <img src="{% static 'assets/images/lucid_launcher.png' %}" alt="demy_services" class="img-responsive p-1" style="max-height: 70px;" />
-            </a>
-        </div>
-        -->
-        <div class="navbar-collapse" style="justify-content: flex-end">
-            <ul class="navbar-nav ml-auto mt-md-0">
-                {% for service in nav_services %}
-                    <li class="nav-item">
-                        <input name="hdn_service_path" type="hidden" value="{{ service.services_slug }}-list"/>
-                        <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="{% url service.services_slug|add:'-list'|escape %}">
-                            <i class="mdi mdi-menu">{{ service.services_name }}</i>
-                            <i></i>
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </nav>
+            <input name="hdn_service_path" type="hidden" value="{{ service.services_slug }}-list"/>
+            <a href="{% url service.services_slug|add:'-list'|escape %}" class="btn btn-outline-dark">{{ service.services_name }}</a>
 
+    {% endfor %}
 {% endblock content %}

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import RegisterView, myLoginView
 from dashboard import views as dash_view
+from es_calendar import views as calendar
 
 from django.contrib.auth.views import (
     LogoutView,
@@ -11,14 +12,14 @@ from django.contrib.auth.views import (
 )
 
 urlpatterns = [
-    path('', dash_view.Dashboard.home, name='home'),
+    path('', calendar.EsCalendar, name='home'),
     path('login/', myLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('register/', RegisterView.as_view(),name='register'),
     path('password-reset/',
         PasswordResetView.as_view(
-            template_name='users/password_reset.html',
-            html_email_template_name='users/password_reset_email.html'
+            template_name='users/password-reset.html',
+            html_email_template_name='users/password-reset_email.html'
         ),
         name='password-reset'
     ),
